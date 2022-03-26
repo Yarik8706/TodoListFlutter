@@ -85,7 +85,6 @@ class _ToDoListState extends State<ToDoList> {
                           color: Theme.of(context).primaryColor
                         ),
                         TextField(
-                          obscureText: true,
                           decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Название',
@@ -99,7 +98,6 @@ class _ToDoListState extends State<ToDoList> {
                           height: 30,
                         ),
                         TextField(
-                          obscureText: true,
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Описание',
