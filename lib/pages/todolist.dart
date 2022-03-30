@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/models/task.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class ToDoList extends StatefulWidget {
   const ToDoList({Key? key}) : super(key: key);
@@ -14,9 +16,16 @@ class _ToDoListState extends State<ToDoList> {
   String _newTaskDescription = '';
   List<Task> todoList = [];
 
+  void initFarebase() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+  }
+
   @override
   void initState() {
     super.initState();
+
+    initFarebase();
 
     todoList.addAll([
       Task(title: 'buy milk', description: 'buy milk'),
@@ -31,6 +40,14 @@ class _ToDoListState extends State<ToDoList> {
       appBar: AppBar(
         title: const Text('Список дел'),
         centerTitle: true,
+        actions: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(context, '/trash', (route) => false);
+              },
+              child: const Icon(Icons.delete_outline, color: Colors.white70)
+          )
+        ],
       ),
       body: Container(
         margin: const EdgeInsets.only(top: 20),

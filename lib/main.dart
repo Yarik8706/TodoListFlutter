@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/pages/todolist.dart';
+import 'package:flutter_todolist/pages/trash_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -27,7 +28,11 @@ class MainApp extends StatelessWidget {
           ),
         )
       ),
-      home: const ToDoList(),
+      initialRoute: '/todo',
+      routes: {
+        '/todo': (context) => ToDoList(),
+        '/trash': (context) => TrashPage()
+      },
     );
   }
 }
